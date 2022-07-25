@@ -57,7 +57,7 @@ eraser.addEventListener("click",(e)=>{
 })
     let startX,startY,endX,endY;
     let drawingboard=false;
-    canvas.addEventListener("pointerdown",(event)=>{
+    canvas.addEventListener("mousedown",(event)=>{
          startX=event.clientX;
          startY=event.clientY;
          if(ctool==pencil ){
@@ -66,7 +66,7 @@ eraser.addEventListener("click",(e)=>{
             tool.moveTo(startX,startY);
          }
     })
-    canvas.addEventListener("pointerup",(event)=>{
+    canvas.addEventListener("mouseup",(event)=>{
          endX=event.clientX;
          endY=event.clientY;
     if(ctool==lineTool){
@@ -95,7 +95,7 @@ eraser.addEventListener("click",(e)=>{
 
 
     })
-    canvas.addEventListener("pointermove",(e)=>{
+    canvas.addEventListener("mousemove",(e)=>{
         if(ctool==pencil){
             if(drawingboard==false){
                 return;
