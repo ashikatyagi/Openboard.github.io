@@ -13,7 +13,7 @@
 </head>
 
 <body id="body">
-
+ <div class="container">
     <div class="menu">
         <i class='fas fa-bars'></i>
 
@@ -26,10 +26,13 @@
         <img class="notepad" src="imagess\notepad.png" alt="">
         <img class="undo" src="imagess\undo.png" alt="">
         <img class="redo" src="imagess\redo.png" alt="">
+        <img src="imagess\line.png" alt="" class="line">
+        <img src="imagess\rectangle.png" alt="" class="rect">
+        
     </div>
     <div class="pencil-tool-cont">
         <div class="width-cont">
-            <input type="range" min="2" max="10" value="3">
+            <input class="pencilinput" type="range" min="2" max="10" value="3">
         </div>
         <div class="color-cont">
             <div class="red"></div>
@@ -38,29 +41,16 @@
         </div>
     </div>
     <div class="eraser-cont">
-        <input type="range" min="2" max="10" value="3">
+        <input class="eraserinput" type="range" min="2" max="10" value="3">
     </div>
 
-    <!-- <div class="notepad-cont">
-        <div class="header">
-            <div class="minimize">
-                <i class="fa fa-window-minimize"></i>
-            </div>
-            <div class="cancel">
-                <i class='fas fa-times'></i>
-            </div>
-        </div>
-        <div class="pad">
-           <textarea class="textarea" name="text"></textarea>
-            
-        </div>
-    </div> -->
 
-    
-    
+    <canvas class="canvas"></canvas>
+ </div>    
       
   
     <script src="tools.js"></script>
+    <script src="canvas.js"></script>
 </body>
 
 </html>

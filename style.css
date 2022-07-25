@@ -22,10 +22,7 @@
     left: 3px;
     bottom: 2px;
 }
-.container{
-    display: flex;
-    direction: column;
-}
+
 img{
     width: 1.5rem;
     height: 2rem;
@@ -195,5 +192,9 @@ input[type="range"] {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.imginsticky{
+    height: 100%;
+    width: 100%;
 }
 

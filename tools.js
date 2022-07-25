@@ -11,7 +11,7 @@ let eraserflag = false;
 
 let notepad = document.querySelector(".notepad");
 
-let upload=document.querySelector(".upload");
+let upload = document.querySelector(".upload");
 
 
 menu.addEventListener("click", function (e) {
@@ -44,23 +44,22 @@ pencil.addEventListener("click", function run() {
     else {
         pencil_tool.style.display = "none";
     }
+    
+    
 })
 eraser.addEventListener("click", function run() {
-
-    eraserflag = !eraserflag;
+    eraserflag= !eraserflag; 
     if (eraserflag) {
         eraser_tool.style.display = "flex";
     }
     else {
         eraser_tool.style.display = "none";
     }
+    
+  
 })
 notepad.addEventListener("click", function run() {
-    let createle = document.createElement("div");
-    let miniflag = true;
-    let removeflag = true;
-    createle.setAttribute("class", "notepad-cont");
-    createle.innerHTML = `
+    let divcontent = `
     <div id="sticky" class="notepad-cont" draggable="true" ondragstart="drag(event)">
     <div class="header">
         <div class="minimize">
@@ -74,8 +73,39 @@ notepad.addEventListener("click", function run() {
        <textarea class="textarea" name="text"></textarea>
         
     </div>
-</div>
-`;
+    </div>`;
+    createsticky(divcontent);
+})
+upload.addEventListener("click", (e) => {
+    let input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.click();
+    input.addEventListener("change", (e) => {
+        let file = input.files[0];
+        let url = URL.createObjectURL(file);
+        let divcontent = `
+        <div id="sticky" class="notepad-cont" draggable="true" ondragstart="drag(event)">
+        <div class="header">
+            <div class="minimize">
+                <i class="fa fa-window-minimize"></i>
+            </div>
+            <div class="cancel">
+                <i class='fas fa-times'></i>
+            </div>
+        </div>
+        <div class="pad">
+           <img class="imginsticky" src="${url}" alt=""></img>
+            
+        </div>
+        </div>`;
+        createsticky(divcontent);
+
+    })
+})
+function createsticky(divcontent) {
+    let createle = document.createElement("div");
+    createle.setAttribute("class", "notepad-cont");
+    createle.innerHTML = divcontent;
     document.body.appendChild(createle);
     let minimize = createle.querySelector(".minimize");
     let cancel = createle.querySelector(".cancel");
@@ -88,8 +118,7 @@ notepad.addEventListener("click", function run() {
     createle.ondragstart = function () {
         return false;
     };
-})
-upload.addEventListener("click",)
+}
 
 function draganddrop(element, event) {
     let shiftX = event.clientX - element.getBoundingClientRect().left;
@@ -123,7 +152,7 @@ function draganddrop(element, event) {
 }
 function minimizeorremove(minimize, cancel, createle) {
     minimize.addEventListener("click", (e) => {
-        let pad= createle.querySelector(".pad");
+        let pad = createle.querySelector(".pad");
 
         let displayy = getComputedStyle(pad).getPropertyValue("display");
 
@@ -135,8 +164,7 @@ function minimizeorremove(minimize, cancel, createle) {
         }
 
     })
-    cancel.addEventListener("click",(e)=>
-    {
+    cancel.addEventListener("click", (e) => {
         createle.remove();
     })
 
