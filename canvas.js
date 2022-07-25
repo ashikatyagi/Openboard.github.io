@@ -12,9 +12,8 @@ let eracolor="white";
 let download=document.querySelector(".download");
 let lineTool=document.querySelector(".line");
 let rectTool=document.querySelector(".rect");
-let red=document.querySelector(".red");
-let blue=document.querySelector(".blue");
-let green=document.querySelector(".green");
+let colorEle=document.querySelectorAll(".color");
+
 let pencilvalue=document.querySelector(".pencilinput");
 let eraservalue=document.querySelector(".eraserinput");
 
@@ -58,7 +57,7 @@ eraser.addEventListener("click",(e)=>{
 })
     let startX,startY,endX,endY;
     let drawingboard=false;
-    canvas.addEventListener("mousedown",(event)=>{
+    canvas.addEventListener("pointerdown",(event)=>{
          startX=event.clientX;
          startY=event.clientY;
          if(ctool==pencil ){
@@ -67,7 +66,7 @@ eraser.addEventListener("click",(e)=>{
             tool.moveTo(startX,startY);
          }
     })
-    canvas.addEventListener("mouseup",(event)=>{
+    canvas.addEventListener("pointerup",(event)=>{
          endX=event.clientX;
          endY=event.clientY;
     if(ctool==lineTool){
@@ -96,7 +95,7 @@ eraser.addEventListener("click",(e)=>{
 
 
     })
-    canvas.addEventListener("mousemove",(e)=>{
+    canvas.addEventListener("pointermove",(e)=>{
         if(ctool==pencil){
             if(drawingboard==false){
                 return;
@@ -109,21 +108,27 @@ eraser.addEventListener("click",(e)=>{
             }
         }
     })
-
-   
-    
-    red.addEventListener("click",(e)=>{
-       pencolor="red";
-       tool.strokeStyle=pencolor;
-    })
-    blue.addEventListener("click",(e)=>{
-        pencolor="blue";
+   colorEle.forEach((colorEle)=>{
+    colorEle.addEventListener("click",(e)=>{
+        pencolor=colorEle.classList[0];
         tool.strokeStyle=pencolor;
     })
-    green.addEventListener("click",(e)=>{
-        pencolor="green";
-        tool.strokeStyle=pencolor
-    })
+   });
+   
+   
+    
+    // red.addEventListener("click",(e)=>{
+    //    pencolor="red";
+    //    tool.strokeStyle=pencolor;
+    // })
+    // blue.addEventListener("click",(e)=>{
+    //     pencolor="blue";
+    //     tool.strokeStyle=pencolor;
+    // })
+    // green.addEventListener("click",(e)=>{
+    //     pencolor="green";
+    //     tool.strokeStyle=pencolor
+    // })
     
 download.addEventListener("click",(e)=>{
     let url=canvas.toDataURL();
@@ -157,9 +162,10 @@ function drawimg(urlarr,idx){
     
   
     let img=new Image();
-    img.src=url; 
+    img.src="url"; 
     img.addEventListener("load",(e)=>{
         tool.drawImage(img,canvas.width,canvas.height);
     })
+    
     
 }
